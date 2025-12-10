@@ -8,7 +8,7 @@ def cadastrar_usuario(usuarios):
     # Verifica se já existe usuário com este CPF
     for usuario in usuarios:
         if usuario["cpf"] == cpf:
-            print("❌ Já existe um usuário com esse CPF!")
+            print("Já existe um usuário com esse CPF!")
             return
 
     nome = input("Informe o nome completo: ")
@@ -40,7 +40,7 @@ def criar_conta(agencia, contas, usuarios):
             break
 
     if usuario is None:
-        print("❌ Nenhum usuário encontrado com esse CPF. Cadastre o usuário primeiro.")
+        print("Nenhum usuário encontrado com esse CPF. Cadastre o usuário primeiro.")
         return
 
     numero_conta = len(contas) + 1
@@ -66,7 +66,7 @@ def depositar(conta):
     valor = float(input("Valor do depósito: "))
 
     if valor <= 0:
-        print("❌ Valor inválido!")
+        print("Valor inválido!")
         return
 
     conta["saldo"] += valor
@@ -83,13 +83,13 @@ def sacar(*, conta, limite=500, limite_saques=3):
     valor = float(input("Valor do saque: "))
 
     if valor > conta["saldo"]:
-        print("❌ Saldo insuficiente!")
+        print("Saldo insuficiente!")
     elif valor > limite:
-        print(f"❌ Seu limite de saque é R$ {limite:.2f}!")
+        print(f"Seu limite de saque é R$ {limite:.2f}!")
     elif conta["saques_realizados"] >= limite_saques:
-        print("❌ Você atingiu o limite de saques diários!")
+        print("Você atingiu o limite de saques diários!")
     elif valor <= 0:
-        print("❌ Valor inválido!")
+        print("Valor inválido!")
     else:
         conta["saldo"] -= valor
         conta["extrato"] += f"Saque: - R$ {valor:.2f}\n"
@@ -153,7 +153,7 @@ def main():
 
         if opcao == "1":
             if not contas:
-                print("❌ Nenhuma conta criada!")
+                print("Nenhuma conta criada!")
                 continue
 
             num = int(input("Informe o número da conta: "))
@@ -162,7 +162,7 @@ def main():
             if conta:
                 depositar(conta)
             else:
-                print("❌ Conta não encontrada!")
+                print("Conta não encontrada!")
 
         elif opcao == "2":
             num = int(input("Informe o número da conta: "))
@@ -171,7 +171,7 @@ def main():
             if conta:
                 sacar(conta)
             else:
-                print("❌ Conta não encontrada!")
+                print("Conta não encontrada!")
 
         elif opcao == "3":
             num = int(input("Informe o número da conta: "))
@@ -180,7 +180,7 @@ def main():
             if conta:
                 exibir_extrato(conta)
             else:
-                print("❌ Conta não encontrada!")
+                print("Conta não encontrada!")
 
         elif opcao == "4":
             criar_conta(AGENCIA, contas, usuarios)
@@ -196,8 +196,9 @@ def main():
             break
 
         else:
-            print("❌ Opção inválida!")
+            print("Opção inválida!")
 
 
 # Executa o programa
+
 main()
